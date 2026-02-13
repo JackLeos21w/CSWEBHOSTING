@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reviews | TechHelpSeniors</title>
+  <meta name="description" content="What seniors and families say about TechHelpSeniors—real stories from our community.">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a href="index.html" class="nav-logo">TechHelp<span>Seniors</span></a>
+      <div id="dock-slot"></div>
+    </div>
+  </nav>
+
+  <main>
+    <header class="page-header">
+      <div class="container">
+        <h1>Reviews</h1>
+        <p>What our community says about TechHelpSeniors—real stories from seniors and families.</p>
+      </div>
+    </header>
+
+    <section class="section">
+      <div class="container">
+        <div class="reviews-summary">
+          <div class="reviews-stars">
+            <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+          </div>
+          <p class="reviews-rating">4.9 out of 5</p>
+          <p class="reviews-count">Based on community feedback</p>
+        </div>
+
+        <div class="reviews-loop-section" aria-label="Scrolling reviews">
+          <div class="reviews-loop-wrap">
+            <div class="reviews-loop-track">
+              <div class="reviews-loop-inner">
+                <div class="reviews-loop-card">
+                  <div class="review-stars">★★★★★</div>
+                  <p class="review-text">"The volunteer was so patient. I finally learned how to video call my grandchildren. It's changed everything for me!"</p>
+                  <span class="review-name">Martha L.</span>
+                </div>
+                <div class="reviews-loop-card">
+                  <div class="review-stars">★★★★★</div>
+                  <p class="review-text">"I was nervous about my new tablet. The volunteer was kind and never made me feel silly for asking questions."</p>
+                  <span class="review-name">Robert T.</span>
+                </div>
+                <div class="reviews-loop-card">
+                  <div class="review-stars">★★★★☆</div>
+                  <p class="review-text">"Got help with email and staying safe from scams. Very professional and easy to understand. Highly recommend."</p>
+                  <span class="review-name">Patricia K.</span>
+                </div>
+                <div class="reviews-loop-card">
+                  <div class="review-stars">★★★★★</div>
+                  <p class="review-text">"My dad was struggling with his smartphone. A wonderful volunteer guided him step by step. He's so much more confident now."</p>
+                  <span class="review-name">Jennifer M.</span>
+                </div>
+                <div class="reviews-loop-card">
+                  <div class="review-stars">★★★★★</div>
+                  <p class="review-text">"So grateful for the help with video calls. I can see my grandkids every week now!"</p>
+                  <span class="review-name">James W.</span>
+                </div>
+              </div>
+              <div class="reviews-loop-inner" aria-hidden="true">
+                <div class="reviews-loop-card">
+                  <div class="review-stars">★★★★★</div>
+                  <p class="review-text">"The volunteer was so patient. I finally learned how to video call my grandchildren. It's changed everything for me!"</p>
+                  <span class="review-name">Martha L.</span>
+                </div>
+                <div class="reviews-loop-card">
+                  <div class="review-stars">★★★★★</div>
+                  <p class="review-text">"I was nervous about my new tablet. The volunteer was kind and never made me feel silly for asking questions."</p>
+                  <span class="review-name">Robert T.</span>
+                </div>
+                <div class="reviews-loop-card">
+                  <div class="review-stars">★★★★☆</div>
+                  <p class="review-text">"Got help with email and staying safe from scams. Very professional and easy to understand. Highly recommend."</p>
+                  <span class="review-name">Patricia K.</span>
+                </div>
+                <div class="reviews-loop-card">
+                  <div class="review-stars">★★★★★</div>
+                  <p class="review-text">"My dad was struggling with his smartphone. A wonderful volunteer guided him step by step. He's so much more confident now."</p>
+                  <span class="review-name">Jennifer M.</span>
+                </div>
+                <div class="reviews-loop-card">
+                  <div class="review-stars">★★★★★</div>
+                  <p class="review-text">"So grateful for the help with video calls. I can see my grandkids every week now!"</p>
+                  <span class="review-name">James W.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h2 class="reviews-grid-title">Leave a review</h2>
+        <form id="reviewForm" class="review-form">
+          <div class="review-form-row">
+            <div class="form-group">
+              <label for="reviewName">Your name <span class="required">*</span></label>
+              <input type="text" id="reviewName" name="name" placeholder="First name or full name">
+              <span class="form-error" id="reviewNameError" hidden>Please enter your name.</span>
+            </div>
+            <div class="form-group">
+              <label for="reviewRating">Rating <span class="required">*</span></label>
+              <select id="reviewRating" name="rating">
+                <option value="5">★★★★★ (5)</option>
+                <option value="4">★★★★☆ (4)</option>
+                <option value="3">★★★☆☆ (3)</option>
+                <option value="2">★★☆☆☆ (2)</option>
+                <option value="1">★☆☆☆☆ (1)</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="reviewText">Your review <span class="required">*</span></label>
+            <textarea id="reviewText" name="text" rows="4" placeholder="Tell others about your experience with TechHelpSeniors..."></textarea>
+            <span class="form-error" id="reviewTextError" hidden>Please enter your review.</span>
+          </div>
+          <p class="review-form-note">Review will be sent to webserver when you click submit.</p>
+          <div id="reviewFormMessage" class="review-form-message" role="status" aria-live="polite" hidden></div>
+          <button type="submit" class="btn btn-primary" id="reviewSubmitBtn">Submit review</button>
+        </form>
+
+        <div class="reviews-grid">
+          <div class="review-card">
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">"The volunteer was so patient. I finally learned how to video call my grandchildren. It's changed everything for me!"</p>
+            <div class="review-meta">
+              <span class="review-name">Martha L.</span>
+              <span class="review-date">— 2 weeks ago</span>
+            </div>
+          </div>
+          <div class="review-card">
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">"I was nervous about using my new tablet. The volunteer who helped me online was kind and never made me feel silly for asking questions."</p>
+            <div class="review-meta">
+              <span class="review-name">Robert T.</span>
+              <span class="review-date">— 1 month ago</span>
+            </div>
+          </div>
+          <div class="review-card">
+            <div class="review-stars">★★★★☆</div>
+            <p class="review-text">"Got help setting up my email and staying safe from scams. Very professional and easy to understand. Highly recommend."</p>
+            <div class="review-meta">
+              <span class="review-name">Patricia K.</span>
+              <span class="review-date">— 3 weeks ago</span>
+            </div>
+          </div>
+          <div class="review-card">
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">"My dad was struggling with his smartphone. TechHelpSeniors connected him with a wonderful volunteer who guided him step by step online. He's so much more confident now."</p>
+            <div class="review-meta">
+              <span class="review-name">Jennifer M.</span>
+              <span class="review-date">— 1 month ago</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-alt">
+      <div class="container">
+        <div class="section-header">
+          <h2>Share Your Experience</h2>
+          <p>Have we helped you or someone you love? We'd love to hear from you.</p>
+          <a href="contact.html" class="btn btn-primary" style="margin-top: 0.5rem;">Get in Touch</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <span class="footer-logo">TechHelp<span>Seniors</span></span>
+      <p>Free online tech support for older adults. Friendly, patient, and remote.</p>
+    </div>
+  </footer>
+  <script>
+    (function() {
+      const form = document.getElementById('reviewForm');
+      const submitBtn = document.getElementById('reviewSubmitBtn');
+      const nameEl = document.getElementById('reviewName');
+      const textEl = document.getElementById('reviewText');
+      const nameError = document.getElementById('reviewNameError');
+      const textError = document.getElementById('reviewTextError');
+      const messageEl = document.getElementById('reviewFormMessage');
+
+      function showMessage(text, isError) {
+        messageEl.textContent = text;
+        messageEl.hidden = false;
+        messageEl.classList.toggle('review-form-message--error', isError);
+        messageEl.classList.toggle('review-form-message--success', !isError);
+      }
+
+      function hideMessage() {
+        messageEl.hidden = true;
+      }
+
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        hideMessage();
+        var valid = true;
+        if (!nameEl.value.trim()) {
+          nameError.removeAttribute('hidden');
+          nameEl.closest('.form-group').classList.add('error');
+          valid = false;
+        } else {
+          nameError.setAttribute('hidden', '');
+          nameEl.closest('.form-group').classList.remove('error');
+        }
+        if (!textEl.value.trim()) {
+          textError.removeAttribute('hidden');
+          textEl.closest('.form-group').classList.add('error');
+          valid = false;
+        } else {
+          textError.setAttribute('hidden', '');
+          textEl.closest('.form-group').classList.remove('error');
+        }
+        if (!valid) return;
+
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Sending to webserver...';
+        submitBtn.classList.remove('btn-sent');
+
+        // Review form does not send to server — just show the "sent!" animation
+        setTimeout(function() {
+          showMessage('Review sent to webserver.', false);
+          form.reset();
+          submitBtn.textContent = 'sent!';
+          submitBtn.classList.add('btn-sent');
+          submitBtn.disabled = false;
+        }, 500);
+      });
+
+      nameEl.addEventListener('input', function() {
+        nameError.setAttribute('hidden', '');
+        this.closest('.form-group').classList.remove('error');
+      });
+      textEl.addEventListener('input', function() {
+        textError.setAttribute('hidden', '');
+        this.closest('.form-group').classList.remove('error');
+      });
+    })();
+  </script>
+  <script type="module" src="js/dock.js"></script>
+  <script src="js/chat.js"></script>
+</body>
+</html>

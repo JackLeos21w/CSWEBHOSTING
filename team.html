@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Team | TechHelpSeniors</title>
+  <meta name="description" content="Our personal statement: we help older adults with technology for free. Meet the volunteers behind TechHelpSeniors.">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a href="index.html" class="nav-logo">TechHelp<span>Seniors</span></a>
+      <div id="dock-slot"></div>
+    </div>
+  </nav>
+
+  <main>
+    <header class="page-header">
+      <div class="container">
+        <h1>Our personal statement</h1>
+        <p class="page-header-lead">We help older adults feel more comfortable with technology, completely free. Whether it is using a phone, setting up email, making video calls, or staying safe online, we are here to help. There is no judgment and no cost. Just friendly volunteers who genuinely want to make it easier for people to stay connected with the ones and things they care about.</p>
+      </div>
+    </header>
+
+    <section class="section section-alt">
+      <div class="container">
+        <div class="join-team-cta">
+          <h2 style="margin: 0 0 0.5rem;">Join our team</h2>
+          <p style="margin: 0 0 1.25rem; color: var(--color-gray); max-width: 480px;">Want to help seniors with technology? We’re always looking for patient, friendly volunteers.</p>
+          <a href="contact.html?type=volunteer" class="btn btn-primary">Request to join</a>
+        </div>
+        <h2 class="team-gallery-title">Team & Volunteers</h2>
+        <div id="teamGallery" class="friends-grid">
+          <!-- Team members are listed below in the TEAM_MEMBERS array. Edit team.html to add or change people. -->
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <span class="footer-logo">TechHelp<span>Seniors</span></span>
+      <p>Free online tech support for older adults. Friendly, patient, and remote.</p>
+    </div>
+  </footer>
+
+  <script type="module" src="js/dock.js"></script>
+  <script src="js/chat.js"></script>
+  <script>
+    // ——— Edit team.html: add or change team members below. ———
+    // For each person: firstName, lastName, role (optional), details, photo (optional image URL, or leave '' for placeholder).
+    const TEAM_MEMBERS = [
+      {
+        firstName: 'Beck',
+        lastName: 'N',
+        role: 'Volunteer Student',
+        details: 'Leads our volunteer onboarding and matches seniors with the right helper. Passionate about closing the digital divide.',
+        photo: ''
+      },
+      {
+        firstName: 'Beck',
+        lastName: 'N',
+        role: 'Volunteer Student',
+        details: 'Supports volunteers with troubleshooting and runs our weekly training sessions. Former IT professional.',
+        photo: ''
+      },
+      {
+        firstName: 'Jack',
+        lastName: 'L',
+        role: 'Volunteer Assistant',
+        details: 'Helps seniors with smartphones and video calls. Loves seeing people connect with family online.',
+        photo: ''
+      }
+    ];
+
+    function escapeHtml(s) {
+      if (s == null) return '';
+      const div = document.createElement('div');
+      div.textContent = s;
+      return div.innerHTML;
+    }
+
+    const gallery = document.getElementById('teamGallery');
+    TEAM_MEMBERS.forEach(function(m) {
+      const card = document.createElement('div');
+      card.className = 'friend-card';
+      const photoHtml = m.photo
+        ? '<img src="' + escapeHtml(m.photo) + '" alt="' + escapeHtml(m.firstName) + '">'
+        : '<span class="friend-card-placeholder" aria-hidden="true">👤</span>';
+      card.innerHTML =
+        '<div class="friend-card-photo">' + photoHtml + '</div>' +
+        '<div class="friend-card-body">' +
+          '<h3>' + escapeHtml(m.firstName) + ' ' + escapeHtml(m.lastName) + '</h3>' +
+          (m.role ? '<div class="friend-card-role">' + escapeHtml(m.role) + '</div>' : '') +
+          '<p>' + escapeHtml(m.details) + '</p>' +
+        '</div>';
+      gallery.appendChild(card);
+    });
+  </script>
+</body>
+</html>

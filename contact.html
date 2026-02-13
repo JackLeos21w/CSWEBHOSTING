@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Request Help | TechHelpSeniors</title>
+  <meta name="description" content="Request free online tech support. We're here to help seniors with phones, computers, and more. A volunteer will reach out within 1–2 business days.">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a href="index.html" class="nav-logo">TechHelp<span>Seniors</span></a>
+      <div id="dock-slot"></div>
+    </div>
+  </nav>
+
+  <main>
+    <header class="page-header">
+      <div class="container">
+        <h1 id="pageTitle">Request Help</h1>
+        <p id="pageSubtitle">Tell us what you need. A volunteer will reach out within 1–2 business days to schedule a free online session.</p>
+      </div>
+    </header>
+
+    <section class="section">
+      <div class="container">
+        <form class="form-section" id="contactForm" novalidate>
+          <input type="hidden" name="requestType" id="requestType" value="help">
+          <div class="form-intro">
+            <h2 id="formIntroTitle">How can we help?</h2>
+            <p id="formIntroText">Tell us a bit about yourself and what you need. A volunteer will reach out within 1–2 business days to schedule an online session.</p>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="firstName">First name <span class="required">*</span></label>
+              <input type="text" id="firstName" name="firstName" placeholder="First name">
+              <span class="form-error" id="firstNameError" hidden>This field is required.</span>
+            </div>
+            <div class="form-group">
+              <label for="lastName">Last name <span class="required">*</span></label>
+              <input type="text" id="lastName" name="lastName" placeholder="Last name">
+              <span class="form-error" id="lastNameError" hidden>This field is required.</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email address <span class="required">*</span></label>
+            <input type="email" id="email" name="email" placeholder="you@example.com">
+            <span class="form-error" id="emailError" hidden>Please enter a valid email address.</span>
+          </div>
+
+          <div class="form-group">
+            <label for="phone">Phone number <span class="required">*</span></label>
+            <input type="tel" id="phone" name="phone" placeholder="(000) 000-0000">
+            <span class="form-hint">Enter a valid number with at least 10 digits (e.g. 555-123-4567).</span>
+            <span class="form-error" id="phoneError" hidden>This field is required.</span>
+          </div>
+
+          <div class="form-group">
+            <label for="message" id="messageLabel">What do you need help with? <span class="required">*</span></label>
+            <textarea id="message" name="message" rows="5" placeholder="Tell us about the technology you're using and what you'd like to learn or fix. For example: 'I need help setting up video calls with my granddaughter on my iPad.'"></textarea>
+            <span class="form-error" id="messageError" hidden>This field is required.</span>
+          </div>
+
+          <div class="form-group">
+            <label>Additional materials (optional)</label>
+            <p style="margin: 0 0 0.75rem; font-size: 0.95rem; color: var(--color-gray);">
+              If you have screenshots or documents that would help us understand your question, you may upload them here. 10 MB max per file.
+            </p>
+            <label class="upload-zone" for="fileUpload">
+              <input type="file" id="fileUpload" name="file" accept=".pdf,.jpg,.jpeg,.png,.doc,.docx" multiple>
+              <div class="upload-icon">↑</div>
+              <div class="upload-text">Drag and drop files here, or <strong>Browse Files</strong></div>
+            </label>
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="margin-top: 0.5rem;" id="submitBtn">Submit request</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <span class="footer-logo">TechHelp<span>Seniors</span></span>
+      <p>Free online tech support for older adults. Friendly, patient, and remote.</p>
+    </div>
+  </footer>
+
+  <script>
+    (function initVolunteerMode() {
+      const params = new URLSearchParams(window.location.search);
+      if (params.get('type') === 'volunteer') {
+        document.getElementById('requestType').value = 'volunteer';
+        document.title = 'Join Our Team | TechHelpSeniors';
+        document.getElementById('pageTitle').textContent = 'Join Our Team';
+        document.getElementById('pageSubtitle').textContent = 'We\'re always looking for patient, friendly volunteers. Tell us about yourself and we\'ll be in touch.';
+        document.getElementById('formIntroTitle').textContent = 'Apply to volunteer';
+        document.getElementById('formIntroText').textContent = 'Share your name and contact info, and a bit about why you\'d like to volunteer. Our team will reach out with next steps.';
+        document.getElementById('messageLabel').innerHTML = 'Tell us about yourself <span class="required">*</span>';
+        document.getElementById('message').placeholder = 'Why do you want to volunteer? Any relevant experience or skills? How much time can you offer?';
+        document.getElementById('submitBtn').textContent = 'Request to join';
+      }
+    })();
+
+    const form = document.getElementById('contactForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const requiredFields = ['requestType', 'firstName', 'lastName', 'email', 'phone', 'message'];
+
+    // Hide all error messages until user tries to submit
+    requiredFields.forEach(function(fieldId) {
+      const err = document.getElementById(fieldId + 'Error');
+      if (err) err.setAttribute('hidden', '');
+    });
+
+    function isValidEmail(email) {
+      if (!email || typeof email !== 'string') return false;
+      const e = email.trim();
+      return e.includes('@') && e.includes('.') && e.length > 5;
+    }
+
+    function isValidPhone(phone) {
+      const digits = (phone || '').replace(/\D/g, '');
+      return digits.length >= 10 && digits.length <= 15;
+    }
+
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      let isValid = true;
+
+      requiredFields.forEach(fieldId => {
+        const field = document.getElementById(fieldId);
+        const errorEl = document.getElementById(fieldId + 'Error');
+        const formGroup = field ? field.closest('.form-group') : null;
+        const val = field ? field.value.trim() : '';
+
+        if (!val) {
+          isValid = false;
+          if (formGroup) formGroup.classList.add('error');
+          if (errorEl) {
+            errorEl.textContent = 'This field is required.';
+            errorEl.removeAttribute('hidden');
+          }
+        } else if (fieldId === 'email') {
+          if (!isValidEmail(val)) {
+            isValid = false;
+            if (formGroup) formGroup.classList.add('error');
+            if (errorEl) {
+              errorEl.textContent = 'Please enter a valid email address.';
+              errorEl.removeAttribute('hidden');
+            }
+          } else {
+            if (formGroup) formGroup.classList.remove('error');
+            if (errorEl) errorEl.setAttribute('hidden', '');
+          }
+        } else if (fieldId === 'phone') {
+          if (!isValidPhone(val)) {
+            isValid = false;
+            if (formGroup) formGroup.classList.add('error');
+            if (errorEl) {
+              errorEl.textContent = 'Please enter a valid phone number (at least 10 digits).';
+              errorEl.removeAttribute('hidden');
+            }
+          } else {
+            if (formGroup) formGroup.classList.remove('error');
+            if (errorEl) errorEl.setAttribute('hidden', '');
+          }
+        } else {
+          if (formGroup) formGroup.classList.remove('error');
+          if (errorEl) errorEl.setAttribute('hidden', '');
+        }
+      });
+
+      if (!isValid) {
+        document.querySelector('.form-group.error input, .form-group.error select, .form-group.error textarea')?.focus();
+        return;
+      }
+
+      const formData = new FormData();
+      formData.append('requestType', document.getElementById('requestType').value);
+      formData.append('firstName', document.getElementById('firstName').value.trim());
+      formData.append('lastName', document.getElementById('lastName').value.trim());
+      formData.append('email', document.getElementById('email').value.trim());
+      formData.append('phone', document.getElementById('phone').value.trim());
+      formData.append('message', document.getElementById('message').value.trim());
+
+      const fileInput = document.getElementById('fileUpload');
+      if (fileInput.files && fileInput.files.length > 0) {
+        for (let i = 0; i < fileInput.files.length; i++) {
+          formData.append('additionalMaterials', fileInput.files[i]);
+        }
+      }
+
+      const initialBtnText = submitBtn.textContent;
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending...';
+      submitBtn.classList.remove('btn-sent');
+      var success = false;
+
+      try {
+        const base = window.location.origin;
+        const res = await fetch(`${base}/api/submit`, {
+          method: 'POST',
+          body: formData,
+        });
+        const data = await res.json();
+
+        if (res.ok) {
+          success = true;
+          form.reset();
+          if (fileInput) fileInput.value = '';
+          submitBtn.textContent = 'sent!';
+          submitBtn.classList.add('btn-sent');
+        } else {
+          alert(data.error || data.message || 'Something went wrong. Please try again.');
+        }
+      } catch (err) {
+        alert('Could not send your request. Please check your connection and try again.');
+      } finally {
+        submitBtn.disabled = false;
+        if (!success) {
+          submitBtn.textContent = initialBtnText;
+          submitBtn.classList.remove('btn-sent');
+        }
+      }
+    });
+
+    // Clear error when user types (errors only show again if they submit again with empty/invalid)
+    requiredFields.forEach(fieldId => {
+      const field = document.getElementById(fieldId);
+      if (field) {
+        field.addEventListener('input', function() {
+          const formGroup = this.closest('.form-group');
+          if (formGroup) formGroup.classList.remove('error');
+          const err = document.getElementById(fieldId + 'Error');
+          if (err) err.setAttribute('hidden', '');
+        });
+      }
+    });
+  </script>
+  <script type="module" src="js/dock.js"></script>
+  <script src="js/chat.js"></script>
+</body>
+</html>

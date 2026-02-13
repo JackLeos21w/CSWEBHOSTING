@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: techhelpseniors
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: python server.py
+    # API key: add apikey.txt via Dashboard → Secret Files (contents = your API key)
