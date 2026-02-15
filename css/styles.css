@@ -1068,14 +1068,26 @@ a:hover {
 
 /* Friends / Team cards */
 .team-gallery-title {
-  margin: 2.5rem 0 1.5rem;
+  margin: 0 0 1.5rem;
   color: var(--color-navy);
+  text-align: center;
+}
+
+.join-team-cta {
+  margin-top: 2.5rem;
+  text-align: center;
+}
+
+.join-team-cta p {
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .friends-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   gap: 1.5rem;
+  justify-content: center;
 }
 
 .friend-card-placeholder {
